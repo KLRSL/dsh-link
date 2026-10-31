@@ -1,0 +1,27 @@
+# 依赖与产物
+node_modules/
+*.tgz
+
+# 包内 chunk：由 scripts/build-client-chunk.mjs 从 lib/mobile/client.js 生成，
+# 只改两行注册头；prepack 自动重建，仓库里只保留一份源码。
+lib/client.mobile.js
+
+# 运行时数据（可能含真实 IP、设备 key、证书）——永远不要提交
+dsh-remote/
+*.pem
+*.key
+token.txt
+devices.json
+pair.json
+link-peer.json
+link.json
+mobile.json
+*.log
+backups/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini

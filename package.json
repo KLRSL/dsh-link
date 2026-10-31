@@ -1,0 +1,59 @@
+{
+  "name": "dsh-link",
+  "version": "0.18.36",
+  "description": "Keep using a desktop DSH session from your phone: chat, watch the live output, and get the result on your phone when a desktop turn finishes.",
+  "type": "module",
+  "main": "./lib/host.js",
+  "exports": {
+    ".": "./lib/host.js",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "dshapp-plugin",
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "remote",
+    "lan",
+    "android"
+  ],
+  "homepage": "https://github.com/KLRSL/dsh-link#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KLRSL/dsh-link.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KLRSL/dsh-link/issues"
+  },
+  "author": "KLRSL",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib",
+    "locale",
+    "scripts/link-install.mjs",
+    "scripts/build-client-chunk.mjs",
+    "cordis.patch.yml",
+    "tests",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build-client-chunk.mjs",
+    "test": "node tests/check-syntax.mjs && node tests/preload-window.mjs && node tests/memsync-merge.mjs && node tests/link-config.mjs && node tests/pairing.mjs && node tests/agent-message.mjs && node tests/send-to-desktop.mjs && node tests/notify-target.mjs",
+    "prepack": "node scripts/build-client-chunk.mjs"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,16 @@
+# dsh-link —— bundle 补丁。
+#
+# 本文件的作用是往 profile 的 loader 树里 insert 一行，让本插件被真正加载。
+# 官方安装器只接受「bundle 型」插件（`dsh.bundle.patch` 指向本文件），
+# 没有它会被判成 `not-a-bundle` 而拒绝安装。
+#
+# ⚠️ `name` 必须与 package.json 的 `name` 逐字一致：loader 按 name 去
+# profile 的 node_modules 里 resolve，写成别的名字会「装得上、但加载时
+# 找不到模块」。
+#
+# 只 insert 自己一行、不碰任何既有行：补丁是「整行替换 config」而不是合并，
+# 所以覆盖别人的行会造成难以排查的配置丢失。
+
+- insert:
+    - id: dsh-link
+      name: 'dsh-link'
